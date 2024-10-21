@@ -62,21 +62,21 @@ module LengthUnit = {
 
   let toString = (x: t) =>
     switch x {
-    | #em(x) => `$(x)em`
-    | #ex(x) => `$(x)ex`
-    | #ch(x) => `$(x)ch`
-    | #rem(x) => `$(x)rem`
-    | #vw(x) => `$(x)vw`
-    | #vh(x) => `$(x)vh`
-    | #vmin(x) => `$(x)vmin`
-    | #vmax(x) => `$(x)vmax`
-    | #cm(x) => `$(x)cm`
-    | #mm(x) => `$(x)mm`
-    | #q(x) => `$(x)Q`
-    | #inch(x) => `$(x)in`
-    | #pc(x) => `$(x)pc`
-    | #pt(x) => `$(x)pt`
-    | #px(x) => `$(x)px`
+    | #em(x) => `${x->Js.Float.toString}em`
+    | #ex(x) => `${x->Js.Float.toString}ex`
+    | #ch(x) => `${x->Js.Float.toString}ch`
+    | #rem(x) => `${x->Js.Float.toString}rem`
+    | #vw(x) => `${x->Js.Float.toString}vw`
+    | #vh(x) => `${x->Js.Float.toString}vh`
+    | #vmin(x) => `${x->Js.Float.toString}vmin`
+    | #vmax(x) => `${x->Js.Float.toString}vmax`
+    | #cm(x) => `${x->Js.Float.toString}cm`
+    | #mm(x) => `${x->Js.Float.toString}mm`
+    | #q(x) => `${x->Js.Float.toString}Q`
+    | #inch(x) => `${x->Js.Float.toString}in`
+    | #pc(x) => `${x->Js.Float.toString}pc`
+    | #pt(x) => `${x->Js.Float.toString}pt`
+    | #px(x) => `${x->Js.Int.toString}px`
     | #zero => "0"
     }
 }
@@ -120,7 +120,7 @@ module PercentageUnit = {
 
   let toString = (x: t) =>
     switch x {
-    | #pct(x) => `$(x)%`
+    | #pct(x) => `${x->Js.Float.toString}%`
     }
 }
 
@@ -286,10 +286,10 @@ module Angle = {
 
   let toString = (x: t) =>
     switch x {
-    | #deg(x) => `$(x)deg`
-    | #rad(x) => `$(x)rad`
-    | #grad(x) => `$(x)grad`
-    | #turn(x) => `$(x)turn`
+    | #deg(x) => `${x->Js.Float.toString}deg`
+    | #rad(x) => `${x->Js.Float.toString}rad`
+    | #grad(x) => `${x->Js.Float.toString}grad`
+    | #turn(x) => `${x->Js.Float.toString}turn`
     }
 }
 
@@ -1381,8 +1381,8 @@ module Timing = {
 
   let toString = (x: t) =>
     switch x {
-    | #s(x) => `$(x)s`
-    | #ms(x) => `$(x)ms`
+    | #s(x) => `${x->Js.Float.toString}s`
+    | #ms(x) => `${x->Js.Int.toString}ms`
     | #zero => "0s"
     }
 }
@@ -1828,7 +1828,7 @@ module Grid = {
 
     let toString = (x: t) =>
       switch x {
-      | #fr(x) => `$(x)fr`
+      | #fr(x) => `${x->Js.Float.toString}fr`
       }
   }
 
