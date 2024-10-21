@@ -36,7 +36,7 @@ module Calc = {
 
   let numToString = (x: n) =>
     switch x {
-    | #n(x) => `${x}`
+    | #n(x) => x->Js.Float.toString
     }
 }
 
@@ -62,21 +62,21 @@ module LengthUnit = {
 
   let toString = (x: t) =>
     switch x {
-    | #em(x) => j`$(x)em`
-    | #ex(x) => j`$(x)ex`
-    | #ch(x) => j`$(x)ch`
-    | #rem(x) => j`$(x)rem`
-    | #vw(x) => j`$(x)vw`
-    | #vh(x) => j`$(x)vh`
-    | #vmin(x) => j`$(x)vmin`
-    | #vmax(x) => j`$(x)vmax`
-    | #cm(x) => j`$(x)cm`
-    | #mm(x) => j`$(x)mm`
-    | #q(x) => j`$(x)Q`
-    | #inch(x) => j`$(x)in`
-    | #pc(x) => j`$(x)pc`
-    | #pt(x) => j`$(x)pt`
-    | #px(x) => j`$(x)px`
+    | #em(x) => `$(x)em`
+    | #ex(x) => `$(x)ex`
+    | #ch(x) => `$(x)ch`
+    | #rem(x) => `$(x)rem`
+    | #vw(x) => `$(x)vw`
+    | #vh(x) => `$(x)vh`
+    | #vmin(x) => `$(x)vmin`
+    | #vmax(x) => `$(x)vmax`
+    | #cm(x) => `$(x)cm`
+    | #mm(x) => `$(x)mm`
+    | #q(x) => `$(x)Q`
+    | #inch(x) => `$(x)in`
+    | #pc(x) => `$(x)pc`
+    | #pt(x) => `$(x)pt`
+    | #px(x) => `$(x)px`
     | #zero => "0"
     }
 }
@@ -95,7 +95,7 @@ module Length = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString = (x: t) =>
@@ -105,13 +105,13 @@ module Length = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString2 = (a, b) => {
     let a = a->toString
     let b = b->toString
-    j`$a $b`
+    `${a} ${b}`
   }
 }
 
@@ -120,7 +120,7 @@ module PercentageUnit = {
 
   let toString = (x: t) =>
     switch x {
-    | #pct(x) => j`$(x)%`
+    | #pct(x) => `$(x)%`
     }
 }
 
@@ -138,7 +138,7 @@ module Percentage = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString = (x: t) =>
@@ -148,7 +148,7 @@ module Percentage = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 }
 
@@ -168,7 +168,7 @@ module LengthPercentage = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString = (x: t) =>
@@ -179,20 +179,20 @@ module LengthPercentage = {
       let op = op->Calc.opToString
       let a = a->operandToString
       let b = b->operandToString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString2 = (a, b) => {
     let a = a->toString
     let b = b->toString
-    j`$a $b`
+    `${a} ${b}`
   }
 
   let toString3 = (a, b, c) => {
     let a = a->toString
     let b = b->toString
     let c = c->toString
-    j`$a $b $c`
+    `${a} ${b} ${c}`
   }
 
   let toString4 = (a, b, c, d) => {
@@ -200,7 +200,7 @@ module LengthPercentage = {
     let b = b->toString
     let c = c->toString
     let d = d->toString
-    j`$a $b $c $d`
+    `${a} ${b} ${c} ${d}`
   }
 }
 
@@ -216,14 +216,14 @@ module LengthPercentageAuto = {
   let toString2 = (a, b) => {
     let a = a->toString
     let b = b->toString
-    j`$a $b`
+    `${a} ${b}`
   }
 
   let toString3 = (a, b, c) => {
     let a = a->toString
     let b = b->toString
     let c = c->toString
-    j`$a $b $c`
+    `${a} ${b} ${c}`
   }
 
   let toString4 = (a, b, c, d) => {
@@ -231,7 +231,7 @@ module LengthPercentageAuto = {
     let b = b->toString
     let c = c->toString
     let d = d->toString
-    j`$a $b $c $d`
+    `${a} ${b} ${c} ${d}`
   }
 }
 
@@ -256,20 +256,20 @@ module NumberPercentage = {
       let op = op->Calc.opToString
       let a = a->toString
       let b = b->toString
-      j`calc($a $op $b)`
+      `calc(${a} ${op} ${b})`
     }
 
   let toString2 = (a, b) => {
     let a = a->toString
     let b = b->toString
-    j`$a $b`
+    `${a} ${b}`
   }
 
   let toString3 = (a, b, c) => {
     let a = a->toString
     let b = b->toString
     let c = c->toString
-    j`$a $b $c`
+    `${a} ${b} ${c}`
   }
 
   let toString4 = (a, b, c, d) => {
@@ -277,7 +277,7 @@ module NumberPercentage = {
     let b = b->toString
     let c = c->toString
     let d = d->toString
-    j`$a $b $c $d`
+    `${a} ${b} ${c} ${d}`
   }
 }
 
@@ -286,10 +286,10 @@ module Angle = {
 
   let toString = (x: t) =>
     switch x {
-    | #deg(x) => j`$(x)deg`
-    | #rad(x) => j`$(x)rad`
-    | #grad(x) => j`$(x)grad`
-    | #turn(x) => j`$(x)turn`
+    | #deg(x) => `$(x)deg`
+    | #rad(x) => `$(x)rad`
+    | #grad(x) => `$(x)grad`
+    | #turn(x) => `$(x)turn`
     }
 }
 
@@ -306,10 +306,10 @@ module Color = {
 
   let toString = (x: t) =>
     switch x {
-    | #rgb(r, g, b) => j`rgb($r, $g, $b)`
-    | #rgba(r, g, b, a) => j`rgba($r, $g, $b, $a)`
-    | #hsl(h, s, l) => j`hsl($h, $s%, $l%)`
-    | #hsla(h, s, l, a) => j`hsla($h, $s%, $l%, $a)`
+    | #rgb(r, g, b) => `rgb(${r->Js.Int.toString}, ${g->Js.Int.toString}, ${b->Js.Int.toString})`
+    | #rgba(r, g, b, a) => `rgba(${r->Js.Int.toString}, ${g->Js.Int.toString}, ${b->Js.Int.toString}, ${a->Js.Float.toString})`
+    | #hsl(h, s, l) => `hsl(${h->Js.Int.toString}, ${s->Js.Int.toString}%, ${l->Js.Int.toString}%)`
+    | #hsla(h, s, l, a) => `hsla(${h->Js.Int.toString}, ${s->Js.Int.toString}%, ${l->Js.Int.toString}%, ${a->Js.Float.toString})`
     | #hex(x) => "#" ++ x
     | #transparent => "transparent"
     | #currentColor => "currentColor"
@@ -473,7 +473,7 @@ module Gradient = {
       x
       ->List.mapU((. (index, color)) => {
         let color = color->Color.toString
-        j`$color $index%`
+        `${color} ${index->Js.Int.toString}%`
       })
       ->Helpers.joinWith(", ")
   }
@@ -490,17 +490,17 @@ module Gradient = {
     | #linearGradient(angle, stops) =>
       let angle = angle->Angle.toString
       let stops = stops->Stops.toString
-      j`linear-gradient($angle, $stops)`
+      `linear-gradient(${angle}, ${stops})`
     | #repeatingLinearGradient(angle, stops) =>
       let angle = angle->Angle.toString
       let stops = stops->Stops.toString
-      j`repeating-linear-gradient($angle, $stops)`
+      `repeating-linear-gradient(${angle}, ${stops})`
     | #radialGradient(stops) =>
       let stops = stops->Stops.toString
-      j`radial-gradient($stops)`
+      `radial-gradient(${stops})`
     | #repeatingRadialGradient(stops) =>
       let stops = stops->Stops.toString
-      j`repeating-radial-gradient($stops)`
+      `repeating-radial-gradient(${stops})`
     }
 }
 
@@ -509,7 +509,7 @@ module Url = {
 
   let toString = (x: t) =>
     switch x {
-    | #url(x) => j`url($x)`
+    | #url(x) => `url(${x})`
     }
 }
 
@@ -629,7 +629,7 @@ module Border = {
     let width = width->BorderWidth.toString
     let style = style->BorderStyle.toString
     let color = color->Color.toString
-    j`$width $style $color`
+    `${width} ${style} ${color}`
   }
 }
 
@@ -721,7 +721,7 @@ module BackgroundRepeat = {
   let toString2 = (a, b) => {
     let a = a->toString
     let b = b->toString
-    j`$a $b`
+    `${a} ${b}`
   }
 }
 
@@ -738,7 +738,7 @@ module BackgroundSize = {
     | #size(x, y) =>
       let x = x->LengthPercentage.toString
       let y = y->LengthPercentage.toString
-      j`$x $y`
+      `${x} ${y}`
     | #auto => "auto"
     | #cover => "cover"
     | #contain => "contain"
@@ -764,15 +764,15 @@ module BackgroundPosition = {
       | #leftOffset(o) =>
         let x = "left"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       | #rightOffset(o) =>
         let x = "right"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       | #centerOffset(o) =>
         let x = "center"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       }
   }
   module KeywordY = {
@@ -793,15 +793,15 @@ module BackgroundPosition = {
       | #topOffset(o) =>
         let x = "top"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       | #bottomOffset(o) =>
         let x = "bottom"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       | #centerOffset(o) =>
         let x = "center"
         let o = o->LengthPercentage.toString
-        j`$x $o`
+        `${x} ${o}`
       }
   }
 
@@ -816,11 +816,11 @@ module BackgroundPosition = {
     | #values(x, y) =>
       let x = x->LengthPercentage.toString
       let y = y->LengthPercentage.toString
-      j`$x $y`
+      `${x} ${y}`
     | #keywords(x, y) =>
       let x = x->KeywordX.toString
       let y = y->KeywordY.toString
-      j`$x $y`
+      `${x} ${y}`
     | #initial => "initial"
     }
 }
@@ -886,7 +886,7 @@ module ListStyle = {
     let style = style->ListStyleType.toString
     let position = position->ListStylePosition.toString
     let image = image->ListStyleImage.toString
-    j`$style $position $image`
+    `${style} ${position} ${image}`
   }
 }
 
@@ -1022,8 +1022,8 @@ module FontSrc = {
 
   let toString = (~format: option<format>=?, src: src) => {
     let src = switch src {
-    | #url(v) => j`url("$v")`
-    | #local(v) => j`local("$v")`
+    | #url(v) => `url("${v}")`
+    | #local(v) => `local("${v}")`
     }
 
     switch format {
@@ -1036,7 +1036,7 @@ module FontSrc = {
       | #eot => "embedded-opentype"
       | #svg => "svg"
       }
-      j`$src $format`
+      `${src} ${format}`
     }
   }
 }
@@ -1047,7 +1047,7 @@ module LineHeight = {
   let toString = (x: t) =>
     switch x {
     | #normal => "normal"
-    | #abs(x) => j`$x`
+    | #abs(x) => `${x->Js.Float.toString}`
     | #...LengthPercentage.t as x => x->LengthPercentage.toString
     }
 }
@@ -1126,7 +1126,7 @@ module TextShadow = {
     let y = y->Length.toString
     let blur = blur->Length.toString
     let color = color->Color.toString
-    j`$x $y $blur $color`
+    `${x} ${y} ${blur} ${color}`
   }
 }
 
@@ -1250,7 +1250,7 @@ module Outline = {
     let width = width->Length.toString
     let style = style->OutlineStyle.toString
     let color = color->Color.toString
-    j`$width $style $color`
+    `${width} ${style} ${color}`
   }
 }
 
@@ -1263,9 +1263,9 @@ module BoxShadow = {
     let color = color->Color.toString
 
     if inset {
-      j`$x $y $blur $spread $color inset`
+      `${x} ${y} ${blur} ${spread} ${color} inset`
     } else {
-      j`$x $y $blur $spread $color`
+      `${x} ${y} ${blur} ${spread} ${color}`
     }
   }
 }
@@ -1325,7 +1325,7 @@ module Cursor = {
 
   let toString = (x: t) =>
     switch x {
-    | #url(x) => j`url($x)`
+    | #url(x) => `url(${x})`
     | #auto => "auto"
     | #default => "default"
     | #none => "none"
@@ -1381,8 +1381,8 @@ module Timing = {
 
   let toString = (x: t) =>
     switch x {
-    | #s(x) => j`$(x)s`
-    | #ms(x) => j`$(x)ms`
+    | #s(x) => `$(x)s`
+    | #ms(x) => `$(x)ms`
     | #zero => "0s"
     }
 }
@@ -1409,9 +1409,9 @@ module TimingFunction = {
     | #easeInOut => "ease-in-out"
     | #stepStart => "step-start"
     | #stepEnd => "step-end"
-    | #steps(n, #start) => j`steps($n, start)`
-    | #steps(n, #end_) => j`steps($n, end)`
-    | #cubicBezier(a, b, c, d) => j`cubic-bezier($a, $b, $c, $d)`
+    | #steps(n, #start) => `steps(${n->Js.Int.toString}, start)`
+    | #steps(n, #end_) => `steps(${n->Js.Int.toString}, end)`
+    | #cubicBezier(a, b, c, d) => `cubic-bezier(${a->Js.Float.toString}, ${b->Js.Float.toString}, ${c->Js.Float.toString}, ${d->Js.Float.toString})`
     }
 }
 
@@ -1441,7 +1441,7 @@ module Transition = {
     let duration = duration->Timing.toString
     let delay = delay->Timing.toString
     let timingFunction = timingFunction->TimingFunction.toString
-    j`$property $duration $timingFunction $delay`
+    `${property} ${duration} ${timingFunction} ${delay}`
   }
 }
 
@@ -1494,53 +1494,53 @@ module Transform = {
     | #translate(x, y) =>
       let x = x->LengthPercentage.toString
       let y = y->LengthPercentage.toString
-      j`translate($x, $y)`
+      `translate(${x}, ${y})`
     | #translate3d(x, y, z) =>
       let x = x->LengthPercentage.toString
       let y = y->LengthPercentage.toString
       let z = z->LengthPercentage.toString
-      j`translate3d($x, $y, $z)`
+      `translate3d(${x}, ${y}, ${z})`
     | #translateX(x) =>
       let x = x->LengthPercentage.toString
-      j`translateX($x)`
+      `translateX(${x})`
     | #translateY(y) =>
       let y = y->LengthPercentage.toString
-      j`translateY($y)`
+      `translateY(${y})`
     | #translateZ(z) =>
       let z = z->LengthPercentage.toString
-      j`translateZ($z)`
-    | #scale(x) => j`scale($x)`
-    | #scaleXY(x, y) => j`scale($x, $y)`
-    | #scaleX(x) => j`scaleX($x)`
-    | #scaleY(y) => j`scaleY($y)`
-    | #scaleZ(z) => j`scaleZ($z)`
-    | #scale3d(x, y, z) => j`scale3d($x, $y, $z)`
+      `translateZ(${z})`
+    | #scale(x) => `scale(${x->Js.Float.toString})`
+    | #scaleXY(x, y) => `scale(${x->Js.Float.toString}, ${y->Js.Float.toString})`
+    | #scaleX(x) => `scaleX(${x->Js.Float.toString})`
+    | #scaleY(y) => `scaleY(${y->Js.Float.toString})`
+    | #scaleZ(z) => `scaleZ(${z->Js.Float.toString})`
+    | #scale3d(x, y, z) => `scale3d(${x->Js.Float.toString}, ${y->Js.Float.toString}, ${z->Js.Float.toString})`
     | #rotate(a) =>
       let a = a->Angle.toString
-      j`rotate($a)`
+      `rotate(${a})`
     | #rotate3d(x, y, z, a) =>
       let a = a->Angle.toString
-      j`rotate3d($x, $y, $z, $a)`
+      `rotate3d(${x->Js.Float.toString}, ${y->Js.Float.toString}, ${z->Js.Float.toString}, ${a})`
     | #rotateX(a) =>
       let a = a->Angle.toString
-      j`rotateX($a)`
+      `rotateX(${a})`
     | #rotateY(a) =>
       let a = a->Angle.toString
-      j`rotateY($a)`
+      `rotateY(${a})`
     | #rotateZ(a) =>
       let a = a->Angle.toString
-      j`rotateZ($a)`
+      `rotateZ(${a})`
     | #skew(x, y) =>
       let x = x->Angle.toString
       let y = y->Angle.toString
-      j`skew($x, $y)`
+      `skew(${x}, ${y})`
     | #skewX(a) =>
       let a = a->Angle.toString
-      j`skewX($a)`
+      `skewX(${a})`
     | #skewY(a) =>
       let a = a->Angle.toString
-      j`skewY($a)`
-    | #matrix(a, b, c, d, tx, ty) => j`matrix($a, $b, $c, $d, $tx, $ty)`
+      `skewY(${a})`
+    | #matrix(a, b, c, d, tx, ty) => `matrix(${a->Js.Float.toString}, ${b->Js.Float.toString}, ${c->Js.Float.toString}, ${d->Js.Float.toString}, ${tx->Js.Float.toString}, ${ty->Js.Float.toString})`
     | #matrix3d(
         a1,
         b1,
@@ -1558,10 +1558,10 @@ module Transform = {
         b4,
         c4,
         d4,
-      ) => j`matrix3d($a1, $b1, $c1, $d1, $a2, $b2, $c2, $d2, $a3, $b3, $c3, $d3, $a4, $b4, $c4, $d4)`
+      ) => `matrix3d(${a1->Js.Float.toString}, ${b1->Js.Float.toString}, ${c1->Js.Float.toString}, ${d1->Js.Float.toString}, ${a2->Js.Float.toString}, ${b2->Js.Float.toString}, ${c2->Js.Float.toString}, ${d2->Js.Float.toString}, ${a3->Js.Float.toString}, ${b3->Js.Float.toString}, ${c3->Js.Float.toString}, ${d3->Js.Float.toString}, ${a4->Js.Float.toString}, ${b4->Js.Float.toString}, ${c4->Js.Float.toString}, ${d4->Js.Float.toString})`
     | #perspective(x) =>
       let x = x->Length.toString
-      j`perspective($x)`
+      `perspective(${x})`
     | #none => "none"
     }
 }
@@ -1616,7 +1616,7 @@ module AnimationIterationCount = {
   let toString = (x: t) =>
     switch x {
     | #infinite => "infinite"
-    | #i(x) => j`$x`
+    | #i(x) => x->Js.Int.toString
     }
 }
 
@@ -1664,7 +1664,7 @@ module Animation = {
     let fillMode = fillMode->AnimationFillMode.toString
     let playState = playState->AnimationPlayState.toString
     let iterationCount = iterationCount->AnimationIterationCount.toString
-    j`$name $duration $timingFunction $delay $iterationCount $direction $fillMode $playState`
+    `${name} ${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode} ${playState}`
   }
 }
 
@@ -1718,37 +1718,37 @@ module FilterFunction = {
     switch x {
     | #blur(x) =>
       let x = x->Length.toString
-      j`blur($x)`
+      `blur(${x})`
     | #brightness(x) =>
       let x = x->NumberPercentage.toString
-      j`brightness($x)`
+      `brightness(${x})`
     | #contrast(x) =>
       let x = x->NumberPercentage.toString
-      j`contrast($x)`
+      `contrast(${x})`
     | #dropShadow(x, y, blur, color) =>
       let x = x->Length.toString
       let y = y->Length.toString
       let blur = blur->Length.toString
       let color = color->Color.toString
-      j`drop-shadow($x $y $blur $color)`
+      `drop-shadow(${x} ${y} ${blur} ${color})`
     | #grayscale(x) =>
       let x = x->NumberPercentage.toString
-      j`grayscale($x)`
+      `grayscale(${x})`
     | #hueRotate(x) =>
       let x = x->Angle.toString
-      j`hue-rotate($x)`
+      `hue-rotate(${x})`
     | #invert(x) =>
       let x = x->NumberPercentage.toString
-      j`invert($x)`
+      `invert(${x})`
     | #opacity(x) =>
       let x = x->NumberPercentage.toString
-      j`opacity($x)`
+      `opacity(${x})`
     | #saturate(x) =>
       let x = x->NumberPercentage.toString
-      j`saturate($x)`
+      `saturate(${x})`
     | #sepia(x) =>
       let x = x->NumberPercentage.toString
-      j`sepia($x)`
+      `sepia(${x})`
     }
 }
 
@@ -1786,7 +1786,7 @@ module Flex = {
       | #none => "none"
       | #some(grow, shrink, basis) =>
         let basis = basis->LengthPercentageAuto.toString
-        j`$grow $shrink $basis`
+        `${grow->Js.Float.toString} ${shrink->Js.Float.toString} ${basis}`
       }
   }
 
@@ -1817,7 +1817,7 @@ module Flex = {
     let toString = (direction, wrap) => {
       let direction = direction->Direction.toString
       let wrap = wrap->Wrap.toString
-      j`$direction $wrap`
+      `${direction} ${wrap}`
     }
   }
 }
@@ -1828,7 +1828,7 @@ module Grid = {
 
     let toString = (x: t) =>
       switch x {
-      | #fr(x) => j`$(x)fr`
+      | #fr(x) => `$(x)fr`
       }
   }
 
@@ -1865,7 +1865,7 @@ module Grid = {
       | #minmax(min, max) =>
         let min = min->minToString
         let max = max->maxToString
-        j`minmax($min, $max)`
+        `minmax(${min}, ${max})`
       }
   }
 
@@ -1876,7 +1876,7 @@ module Grid = {
       switch x {
       | #fitContent(x) =>
         let x = x->LengthPercentage.toString
-        j`fit-content($x)`
+        `fit-content(${x})`
       }
   }
 
@@ -1894,7 +1894,7 @@ module Grid = {
 
     let valueToString = (x: value) =>
       switch x {
-      | #n(x) => j`$x`
+      | #n(x) => x->Js.Int.toString
       | #autoFill => "auto-fill"
       | #autoFit => "auto-fit"
       }
@@ -1912,7 +1912,7 @@ module Grid = {
       | #repeat(value, trackList) =>
         let value = value->valueToString
         let trackList = trackList->List.map(trackListToString)->Helpers.joinWith(" ")
-        j`repeat($(value), $(trackList))`
+        `repeat(${value}, ${trackList})`
       }
   }
 
@@ -1989,7 +1989,7 @@ module Grid = {
       switch x {
       | #list(xs) =>
         let xs = xs->List.map(valueToString)->Helpers.joinWith(" ")
-        j`$xs`
+        `${xs}`
       | #none => "none"
       }
   }
@@ -2006,12 +2006,12 @@ module Grid = {
     let toString = (x: t) =>
       switch x {
       | #auto => "auto"
-      | #n(x) => j`$x`
+      | #n(x) => x->Js.Int.toString
       | #ident(x) => x
-      | #nIdent(n, ident) => j`$n $ident`
-      | #span(#n(x)) => j`span $x`
-      | #span(#ident(x)) => j`span $x`
-      | #span(#nIdent(n, ident)) => j`span $n $ident`
+      | #nIdent(n, ident) => `${n->Js.Int.toString} ${ident}`
+      | #span(#n(x)) => `span ${x->Js.Int.toString}`
+      | #span(#ident(x)) => `span ${x}`
+      | #span(#nIdent(n, ident)) => `span ${n->Js.Int.toString} ${ident}`
       }
   }
 
@@ -2030,7 +2030,7 @@ module Grid = {
 
     let toString = (x: t) =>
       switch x {
-      | #areas(xs) => xs->List.map(x => j`"$x"`)->Helpers.joinWith("\n")
+      | #areas(xs) => xs->List.map(x => `"${x}"`)->Helpers.joinWith("\n")
       | #none => "none"
       }
   }
@@ -2325,7 +2325,7 @@ module BasicShape = {
         ->Option.map(atPosition => {
           let at1 = atPosition->fst->ShapePosition.toString
           let at2 = atPosition->snd->ShapePosition.toString
-          j` at $at1 $at2`
+          ` at ${at1} ${at2}`
         })
         ->Option.getWithDefault("")
       `${radius}${atPosition}`
@@ -2337,7 +2337,7 @@ module BasicShape = {
         ->Option.map(atPosition => {
           let at1 = atPosition->fst->ShapePosition.toString
           let at2 = atPosition->snd->ShapePosition.toString
-          j` at $at1 $at2`
+          ` at ${at1} ${at2}`
         })
         ->Option.getWithDefault("")
       `${rX} ${rY}${atPosition}`
@@ -2351,7 +2351,7 @@ module BasicShape = {
         ->List.map(arg => {
           let a1 = arg->fst->LengthPercentage.toString
           let a2 = arg->snd->LengthPercentage.toString
-          j`$a1 $a2`
+          `${a1} ${a2}`
         })
         ->List.toArray
         ->Js.Array.joinWith(",", _)
